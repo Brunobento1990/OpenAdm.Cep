@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAdm.Cep.Api", "OpenAdm.Cep.Api\OpenAdm.Cep.Api.csproj", "{205B33C7-3E7A-4122-8BDE-DD03F52FFD20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAdm.Cep.Application", "OpenAdm.Cep.Application\OpenAdm.Cep.Application.csproj", "{ACACC64F-B70D-48B6-95B4-64994A1BE525}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAdm.Cep.IoC", "OpenAdm.Cep.IoC\OpenAdm.Cep.IoC.csproj", "{2025EA4F-DB20-4EDD-B1F9-A9AD86FC81FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAdm.Cep.Domain", "OpenAdm.Cep.Domain\OpenAdm.Cep.Domain.csproj", "{ACD77B28-B878-4F00-81F7-1C318923D1CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAdm.Cep.Infrastructure", "OpenAdm.Cep.Infrastructure\OpenAdm.Cep.Infrastructure.csproj", "{24778780-7E7F-4756-BFBF-23B21DB5A641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAdm.Cep.Test", "OpenAdm.Cep.Test\OpenAdm.Cep.Test.csproj", "{C9736C8E-22AA-456D-B2EE-8783C83D534B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{205B33C7-3E7A-4122-8BDE-DD03F52FFD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205B33C7-3E7A-4122-8BDE-DD03F52FFD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205B33C7-3E7A-4122-8BDE-DD03F52FFD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205B33C7-3E7A-4122-8BDE-DD03F52FFD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACACC64F-B70D-48B6-95B4-64994A1BE525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACACC64F-B70D-48B6-95B4-64994A1BE525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACACC64F-B70D-48B6-95B4-64994A1BE525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACACC64F-B70D-48B6-95B4-64994A1BE525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2025EA4F-DB20-4EDD-B1F9-A9AD86FC81FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2025EA4F-DB20-4EDD-B1F9-A9AD86FC81FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2025EA4F-DB20-4EDD-B1F9-A9AD86FC81FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2025EA4F-DB20-4EDD-B1F9-A9AD86FC81FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD77B28-B878-4F00-81F7-1C318923D1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD77B28-B878-4F00-81F7-1C318923D1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD77B28-B878-4F00-81F7-1C318923D1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD77B28-B878-4F00-81F7-1C318923D1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24778780-7E7F-4756-BFBF-23B21DB5A641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24778780-7E7F-4756-BFBF-23B21DB5A641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24778780-7E7F-4756-BFBF-23B21DB5A641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24778780-7E7F-4756-BFBF-23B21DB5A641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9736C8E-22AA-456D-B2EE-8783C83D534B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9736C8E-22AA-456D-B2EE-8783C83D534B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9736C8E-22AA-456D-B2EE-8783C83D534B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9736C8E-22AA-456D-B2EE-8783C83D534B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AC194FD-4968-46A6-9F1E-415C1CC62A22}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@OpenAdm.Cep.Api_HostAddress = http://localhost:5250
+
+GET {{OpenAdm.Cep.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
