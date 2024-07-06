@@ -4,14 +4,15 @@ public sealed class ApiLog
 {
     public ApiLog(
         Guid id,
-        string origem, 
-        string host, 
-        string ip, 
-        string path, 
-        string? erro, 
-        int statusCode, 
-        int logLevel, 
-        Guid usuarioId)
+        string origem,
+        string host,
+        string ip,
+        string path,
+        string? erro,
+        int statusCode,
+        int logLevel,
+        Guid usuarioId,
+        DateTime dataDeCadastro)
     {
         Id = id;
         Origem = origem;
@@ -22,6 +23,7 @@ public sealed class ApiLog
         StatusCode = statusCode;
         LogLevel = logLevel;
         UsuarioId = usuarioId;
+        DataDeCadastro = dataDeCadastro;
     }
     public Guid Id { get; private set; }
     public string Origem { get; private set; }
@@ -31,5 +33,6 @@ public sealed class ApiLog
     public string? Erro { get; private set; }
     public int StatusCode { get; private set; }
     public int LogLevel { get; private set; }
+    public DateTime DataDeCadastro { get; private set; }
     public Guid UsuarioId { get; private set; }
 }

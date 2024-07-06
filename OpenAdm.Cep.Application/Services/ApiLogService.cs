@@ -25,7 +25,8 @@ public sealed class ApiLogService : IApiLogService
             erro: createAppLog.Erro,
             statusCode: createAppLog.StatusCode,
             logLevel: createAppLog.LogLevel,
-            usuarioId: Guid.Empty);
+            usuarioId: Guid.Empty,
+            dataDeCadastro: DateTime.Now);
 
         await _apiLogRepository.AddLogAsync(log);
     }

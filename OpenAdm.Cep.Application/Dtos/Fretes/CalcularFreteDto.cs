@@ -10,6 +10,7 @@ public class CalcularFreteDto
     public string Altura { get; set; } = string.Empty;
     public string Largura { get; set; } = string.Empty;
     public string Comprimento { get; set; } = string.Empty;
+    public string TipoFrete { get; set; } = string.Empty;
     public int Peso { get; set; }
 
     public void Validar()

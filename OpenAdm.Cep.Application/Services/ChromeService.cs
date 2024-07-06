@@ -33,7 +33,7 @@ public sealed class ChromeService : IChromeService, IDisposable
         cepDestino.Click();
         cepDestino.SendKeys(calcularFreteDto.CepDestino);
 
-        _driver.FindElement(By.XPath("//html/body/div[1]/div[3]/div[2]/div/div/div[2]/div[2]/div[3]/form/div/div/span[7]/label/select/option[24]")).Click();
+        _driver.FindElement(By.XPath($"//html/body/div[1]/div[3]/div[2]/div/div/div[2]/div[2]/div[3]/form/div/div/span[7]/label/select/option[{calcularFreteDto.TipoFrete}]")).Click();
         _driver.ExecuteScript("EnviaFormato(1);");
         _driver.FindElement(By.XPath("//*[@id=\"spanEmbalagemCaixa\"]/label/select/option[3]")).Click();
         var altura = _driver.FindElement(By.Name("Altura"));

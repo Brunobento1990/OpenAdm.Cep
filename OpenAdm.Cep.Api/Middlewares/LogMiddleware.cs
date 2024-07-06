@@ -63,7 +63,7 @@ public class LogMiddleware
 
             _createAppLog ??= new();
             _createAppLog.StatusCode = _statusCode;
-            _createAppLog.Erro = ex.Message;
+            _createAppLog.Erro = ex?.InnerException?.Message ?? ex?.Message;
             _createAppLog.LogLevel = 3;
         }
         finally

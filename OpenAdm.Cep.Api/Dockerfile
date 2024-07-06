@@ -5,11 +5,14 @@ USER app
 WORKDIR /app
 EXPOSE 8080
 
+RUN mkdir -p /app
+
 # Instalar dependências necessárias para o ChromeDriver e Google Chrome
 USER root
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
+    unzip \
     libglib2.0-0 \
     libnss3 \
     libgconf-2-4 \
