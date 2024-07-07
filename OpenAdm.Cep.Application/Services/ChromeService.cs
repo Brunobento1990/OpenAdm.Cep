@@ -17,7 +17,7 @@ public sealed class ChromeService : IChromeService, IDisposable
         options.AddArgument("--headless");
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
-        string driverDirectory = _isWindows ? $"{Directory.GetCurrentDirectory()}\\Driver" : "/usr/local/bin";
+        string driverDirectory = !_isWindows ? $"{Directory.GetCurrentDirectory()}/chromedriver" : $"{Directory.GetCurrentDirectory()}\\Driver\\chromedriver.exe";
         _driver ??= new ChromeDriver(driverDirectory, options);
     }
 
