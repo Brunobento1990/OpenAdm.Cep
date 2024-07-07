@@ -11,6 +11,7 @@ DotEnv.Load();
 
 var urlViaCep = VariaveisDeAmbiente.GetVariavel("VIA_CEP");
 var stringConnection = VariaveisDeAmbiente.GetVariavel("STRING_CONNECTION");
+var schema = VariaveisDeAmbiente.GetVariavel("SCHEMA");
 
 
 builder.Services
@@ -34,7 +35,7 @@ app.UseSwagger(c =>
     c.RouteTemplate = "swagger/{documentName}/swagger.json";
     c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
     {
-        swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"https://{httpReq.Host.Value}{basePath}" } };
+        swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{schema}://{httpReq.Host.Value}{basePath}" } };
     });
 });
 app.UseSwaggerUI();
