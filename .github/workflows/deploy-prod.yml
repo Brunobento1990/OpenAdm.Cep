@@ -20,32 +20,26 @@ jobs:
       run: dotnet restore ./OpenAdm.Cep.Api
     - name: Build
       run: dotnet build ./OpenAdm.Cep.Api --configuration Release
-    - name: Install Chrome
+    
+    - name: Install Chrome dependencies
       run: |
-        sudo apt-get update && apt-get install -y \
-        wget \
-        gnupg \
-        unzip \
-        libglib2.0-0 \
-        libnss3 \
-        libgconf-2-4 \
-        libfontconfig1 \
-        libxcb1 \
-        libxcomposite1 \
-        libxdamage1 \
-        libxrandr2 \
-        libxtst6 \
-        libasound2 \
-        libatk1.0-0 \
-        libatk-bridge2.0-0 \
-        libgtk-3-0
+        sudo apt-get update
+        sudo apt-get install -y libappindicator1 fonts-liberation
+        sudo apt-get install -y wget gnupg2
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
 
     - name: Install ChromeDriver
       run: |
-        sudo wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-        apt-get update && \
-        apt-get install -y google-chrome-stable
+        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv -f chromedriver /usr/local/bin/chromedriver
+        sudo chown root:root /usr/local/bin/chromedriver
+        sudo chmod 0755 /usr/local/bin/chromedriver
+
     - name: Test
       run: dotnet test ./OpenAdm.Cep.Test
     - name: Build-Image-Docker
