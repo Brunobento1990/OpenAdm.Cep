@@ -2,8 +2,7 @@
 using OpenAdm.Cep.Application.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
-using System;
+using System.IO.Compression;
 
 namespace OpenAdm.Cep.Application.Services;
 
@@ -11,6 +10,41 @@ public sealed class ChromeService : IChromeService, IDisposable
 {
     private readonly ChromeDriver _driver;
     private readonly bool _isWindows = Environment.OSVersion.VersionString.Contains("Windows");
+
+    private static void DownloadAndExtractFile(string url, string zipFilePath, string extractPath)
+    {
+        using var httpClient = new HttpClient();
+
+        var response = httpClient.GetAsync(url).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            using (var fileStream = new FileStream(zipFilePath, FileMode.Create, FileAccess.Write))
+            {
+                response.Content.CopyToAsync(fileStream).Wait();
+            }
+
+            ExtractZipFile(zipFilePath, extractPath);
+        }
+    }
+
+    private static void ExtractZipFile(string zipFilePath, string extractPath)
+    {
+        using var archive = ZipFile.OpenRead(zipFilePath);
+
+        foreach (ZipArchiveEntry entry in archive.Entries)
+        {
+            string entryPath = Path.Combine(extractPath, entry.Name.Replace("/", Path.DirectorySeparatorChar.ToString()));
+            if (string.IsNullOrEmpty(entry.Name))
+            {
+                Directory.CreateDirectory(entryPath);
+            }
+            else
+            {
+                entry.ExtractToFile(entryPath, overwrite: true);
+            }
+        }
+    }
+
     public ChromeService()
     {
         var options = new ChromeOptions();
@@ -18,6 +52,26 @@ public sealed class ChromeService : IChromeService, IDisposable
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
         string driverDirectory = !_isWindows ? $"{Directory.GetCurrentDirectory()}/chromedriver" : $"{Directory.GetCurrentDirectory()}\\Driver\\chromedriver.exe";
+
+        if (!File.Exists(driverDirectory))
+        {
+            string url = _isWindows ? "https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.126/win64/chromedriver-win64.zip" 
+                : "https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.126/linux64/chromedriver-linux64.zip";
+            string zipFilePath = Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.zip");
+            string extractPath = !_isWindows ? "/" : "\\Driver";
+            var diretorio = $"{Directory.GetCurrentDirectory()}{extractPath}";
+
+            try
+            {
+                Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}{extractPath}");
+                DownloadAndExtractFile(url, zipFilePath, diretorio);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Falha ao baixar e extrair o ChromeDriver: {ex.Message}");
+            }
+        }
+
         _driver ??= new ChromeDriver(driverDirectory, options);
     }
 
