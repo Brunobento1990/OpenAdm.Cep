@@ -18,7 +18,6 @@ public class FreteService : IFreteService
     public async Task<FreteViewModel> CalcularFreteAsync(CalcularFreteDto calcularFreteDto)
     {
         calcularFreteDto.Validar();
-
         var endereco = await _cepService.ConsultarCepAsync(calcularFreteDto.CepDestino);
         var totalFrete = await _chromeService.CalcularFreteAsync(calcularFreteDto);
 
