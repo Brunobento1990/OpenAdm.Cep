@@ -34,7 +34,7 @@ app.UseSwagger(c =>
     c.RouteTemplate = "swagger/{documentName}/swagger.json";
     c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
     {
-        swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}{basePath}" } };
+        swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"https://{httpReq.Host.Value}{basePath}" } };
     });
 });
 app.UseSwaggerUI();
