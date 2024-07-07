@@ -20,10 +20,22 @@ jobs:
       run: dotnet restore ./OpenAdm.Cep.Api
     - name: Build
       run: dotnet build ./OpenAdm.Cep.Api --configuration Release
+    
+    - name: Install Chrome dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libappindicator1 fonts-liberation
+        sudo apt-get install -y wget gnupg2
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        google-chrome --version
+
     - name: Test
       run: dotnet test ./OpenAdm.Cep.Test
     - name: Build-Image-Docker
-      run: docker build -f OpenAdm.Cep.Api/Dockerfile --no-cache -t brunobentocaina/open-adm-cep:stating
+      run: docker build -f OpenAdm.Cep.Api/Dockerfile --no-cache -t brunobentocaina/open-adm-cep:stating .
     - name: Push
       run: |
         docker login -u brunobentocaina -p ${{ secrets.DOCKER_HUB_KEY }}

@@ -35,7 +35,7 @@ jobs:
     - name: Test
       run: dotnet test ./OpenAdm.Cep.Test
     - name: Build-Image-Docker
-      run: docker build -f OpenAdm.Cep.Api/Dockerfile --no-cache -t brunobentocaina/open-adm-cep:latest
+      run: docker build -f OpenAdm.Cep.Api/Dockerfile --no-cache -t brunobentocaina/open-adm-cep:latest .
     - name: Push
       run: |
         docker login -u brunobentocaina -p ${{ secrets.DOCKER_HUB_KEY }}
